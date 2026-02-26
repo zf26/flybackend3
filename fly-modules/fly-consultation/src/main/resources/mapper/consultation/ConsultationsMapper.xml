@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.consultation.consultationsmaster.mapper.ConsultationsMapper">
+    
+    <resultMap type="Consultations" id="ConsultationsResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="doctorId"    column="doctor_id"    />
+        <result property="consultationType"    column="consultation_type"    />
+        <result property="department"    column="department"    />
+        <result property="consultationMethod"    column="consultation_method"    />
+        <result property="isAnonymous"    column="is_anonymous"    />
+        <result property="priceBudget"    column="price_budget"    />
+        <result property="urgencyLevel"    column="urgency_level"    />
+        <result property="description"    column="description"    />
+        <result property="agreeToTerms"    column="agree_to_terms"    />
+        <result property="status"    column="status"    />
+        <result property="createdAt"    column="created_at"    />
+        <result property="updatedAt"    column="updated_at"    />
+    </resultMap>
+
+    <sql id="selectConsultationsVo">
+        select id, user_id, doctor_id, user_name, doctor_name, consultation_type, department, consultation_method, is_anonymous, price_budget, urgency_level, description, agree_to_terms, status, created_at, updated_at from consultations
+    </sql>
+
+    <select id="selectConsultationsList" parameterType="Consultations" resultMap="ConsultationsResult">
+        <include refid="selectConsultationsVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="doctorId != null "> and doctor_id = #{doctorId}</if>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="doctorName != null  and doctorName != ''"> and doctor_name like concat('%', #{doctorName}, '%')</if>
+            <if test="consultationType != null  and consultationType != ''"> and consultation_type = #{consultationType}</if>
+            <if test="department != null  and department != ''"> and department = #{department}</if>
+            <if test="consultationMethod != null  and consultationMethod != ''"> and consultation_method = #{consultationMethod}</if>
+            <if test="isAnonymous != null "> and is_anonymous = #{isAnonymous}</if>
+            <if test="priceBudget != null  and priceBudget != ''"> and price_budget = #{priceBudget}</if>
+            <if test="urgencyLevel != null  and urgencyLevel != ''"> and urgency_level = #{urgencyLevel}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="agreeToTerms != null "> and agree_to_terms = #{agreeToTerms}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="createdAt != null "> and created_at = #{createdAt}</if>
+            <if test="updatedAt != null "> and updated_at = #{updatedAt}</if>
+        </where>
+    </select>
+    
+    <select id="selectConsultationsById" parameterType="Long" resultMap="ConsultationsResult">
+        <include refid="selectConsultationsVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertConsultations" parameterType="Consultations" useGeneratedKeys="true" keyProperty="id">
+        insert into consultations
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="doctorId != null">doctor_id,</if>
+            <if test="userName != null and userName != ''">user_name,</if>
+            <if test="doctorName != null and doctorName != ''">doctor_name,</if>
+            <if test="consultationType != null and consultationType != ''">consultation_type,</if>
+            <if test="department != null">department,</if>
+            <if test="consultationMethod != null and consultationMethod != ''">consultation_method,</if>
+            <if test="isAnonymous != null">is_anonymous,</if>
+            <if test="priceBudget != null">price_budget,</if>
+            <if test="urgencyLevel != null and urgencyLevel != ''">urgency_level,</if>
+            <if test="description != null">description,</if>
+            <if test="agreeToTerms != null">agree_to_terms,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="createdAt != null">created_at,</if>
+            <if test="updatedAt != null">updated_at,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="doctorId != null">#{doctorId},</if>
+            <if test="userName != null and userName != ''">#{userName},</if>
+            <if test="doctorName != null and doctorName != ''">#{doctorName},</if>
+            <if test="consultationType != null and consultationType != ''">#{consultationType},</if>
+            <if test="department != null">#{department},</if>
+            <if test="consultationMethod != null and consultationMethod != ''">#{consultationMethod},</if>
+            <if test="isAnonymous != null">#{isAnonymous},</if>
+            <if test="priceBudget != null">#{priceBudget},</if>
+            <if test="urgencyLevel != null and urgencyLevel != ''">#{urgencyLevel},</if>
+            <if test="description != null">#{description},</if>
+            <if test="agreeToTerms != null">#{agreeToTerms},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="createdAt != null">#{createdAt},</if>
+            <if test="updatedAt != null">#{updatedAt},</if>
+         </trim>
+    </insert>
+
+    <update id="updateConsultations" parameterType="Consultations">
+        update consultations
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="doctorId != null">doctor_id = #{doctorId},</if>
+            <if test="userName != null and userName != ''">user_name = #{userName},</if>
+            <if test="doctorName != null and doctorName != ''">doctor_name = #{doctorName},</if>
+            <if test="consultationType != null and consultationType != ''">consultation_type = #{consultationType},</if>
+            <if test="department != null">department = #{department},</if>
+            <if test="consultationMethod != null and consultationMethod != ''">consultation_method = #{consultationMethod},</if>
+            <if test="isAnonymous != null">is_anonymous = #{isAnonymous},</if>
+            <if test="priceBudget != null">price_budget = #{priceBudget},</if>
+            <if test="urgencyLevel != null and urgencyLevel != ''">urgency_level = #{urgencyLevel},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="agreeToTerms != null">agree_to_terms = #{agreeToTerms},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="createdAt != null">created_at = #{createdAt},</if>
+            <if test="updatedAt != null">updated_at = #{updatedAt},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteConsultationsById" parameterType="Long">
+        delete from consultations where id = #{id}
+    </delete>
+
+    <delete id="deleteConsultationsByIds" parameterType="String">
+        delete from consultations where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fly-modules-system" />
+        <module name="fly-modules-search" />
+        <module name="fly-common-core" />
+        <module name="fly-common-security" />
+        <module name="fly-gateway" />
+        <module name="flym-modules-consultation" />
+        <module name="fly-common-log" />
+        <module name="fly-common-datascope" />
+        <module name="flym-modules-im" />
+        <module name="fly-knowledge-graph" />
+        <module name="fly-common-datasource" />
+        <module name="fly-common-redis" />
+        <module name="fly-visual-monitor" />
+        <module name="fly-modules-file" />
+        <module name="fly-modules-gen" />
+        <module name="fly-api-system" />
+        <module name="fly-auth" />
+        <module name="fly-common-seata" />
+        <module name="fly-modules-job" />
+        <module name="fly-common-swagger" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="fly" options="-parameters" />
+      <module name="fly-api" options="-parameters" />
+      <module name="fly-api-system" options="-parameters" />
+      <module name="fly-auth" options="-parameters" />
+      <module name="fly-common" options="-parameters" />
+      <module name="fly-common-core" options="-parameters" />
+      <module name="fly-common-datascope" options="-parameters" />
+      <module name="fly-common-datasource" options="-parameters" />
+      <module name="fly-common-log" options="-parameters" />
+      <module name="fly-common-redis" options="-parameters" />
+      <module name="fly-common-seata" options="-parameters" />
+      <module name="fly-common-security" options="-parameters" />
+      <module name="fly-common-swagger" options="-parameters" />
+      <module name="fly-gateway" options="-parameters" />
+      <module name="fly-knowledge-graph" options="-parameters" />
+      <module name="fly-modules" options="-parameters" />
+      <module name="fly-modules-file" options="-parameters" />
+      <module name="fly-modules-gen" options="-parameters" />
+      <module name="fly-modules-job" options="-parameters" />
+      <module name="fly-modules-search" options="-parameters" />
+      <module name="fly-modules-system" options="-parameters" />
+      <module name="fly-visual" options="-parameters" />
+      <module name="fly-visual-monitor" options="-parameters" />
+      <module name="flym-modules-consultation" options="-parameters" />
+      <module name="flym-modules-im" options="-parameters" />
+    </option>
+  </component>
+</project>

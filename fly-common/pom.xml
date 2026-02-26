@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.pf</groupId>
+        <artifactId>fly</artifactId>
+        <version>3.6.7</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>fly-common-log</module>
+        <module>fly-common-core</module>
+        <module>fly-common-redis</module>
+        <module>fly-common-seata</module>
+        <module>fly-common-swagger</module>
+        <module>fly-common-security</module>
+        <module>fly-common-datascope</module>
+        <module>fly-common-datasource</module>
+    </modules>
+
+    <artifactId>fly-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        fly-common通用模块
+    </description>
+
+</project>

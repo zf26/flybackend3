@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.im.mapper.ImChatMessageMapper">
+
+    <resultMap id="ImChatMessageResult" type="com.pf.im.domain.ImChatMessage">
+        <id     property="id"            column="id"/>
+        <result property="roomId"        column="room_id"/>
+        <result property="fromUserId"    column="from_user_id"/>
+        <result property="toUserId"      column="to_user_id"/>
+        <result property="msgType"       column="msg_type"/>
+        <result property="contentCipher" column="content_cipher"/>
+        <result property="extra"         column="extra"/>
+        <result property="msgTime"       column="msg_time"/>
+        <result property="readFlag"      column="read_flag"/>
+        <result property="deletedFlag"   column="deleted_flag"/>
+        <result property="createTime"    column="create_time"/>
+    </resultMap>
+
+    <insert id="insertImChatMessage" parameterType="com.pf.im.domain.ImChatMessage">
+        INSERT INTO im_chat_message (
+            room_id,
+            from_user_id,
+            to_user_id,
+            msg_type,
+            content_cipher,
+            extra,
+            msg_time,
+            read_flag,
+            deleted_flag,
+            create_time
+        ) VALUES (
+            #{roomId},
+            #{fromUserId},
+            #{toUserId},
+            #{msgType},
+            #{contentCipher},
+            #{extra},
+            #{msgTime},
+            #{readFlag},
+            #{deletedFlag},
+            NOW()
+        )
+    </insert>
+
+    <select id="selectByRoomId" resultMap="ImChatMessageResult">
+        SELECT
+            id,
+            room_id,
+            from_user_id,
+            to_user_id,
+            msg_type,
+            content_cipher,
+            extra,
+            msg_time,
+            read_flag,
+            deleted_flag,
+            create_time
+        FROM im_chat_message
+        WHERE room_id = #{roomId}
+        ORDER BY msg_time ASC
+        LIMIT #{limit}
+    </select>
+
+    <select id="selectPrivateHistory" resultMap="ImChatMessageResult">
+        SELECT
+            id,
+            room_id,
+            from_user_id,
+            to_user_id,
+            msg_type,
+            content_cipher,
+            extra,
+            msg_time,
+            read_flag,
+            deleted_flag,
+            create_time
+        FROM im_chat_message
+        WHERE deleted_flag = 0
+          AND (
+                (from_user_id = #{userId1} AND to_user_id = #{userId2})
+             OR (from_user_id = #{userId2} AND to_user_id = #{userId1})
+          )
+          <if test="roomId != null and roomId != ''">
+            AND room_id = #{roomId}
+          </if>
+        ORDER BY msg_time ASC
+        LIMIT #{limit}
+    </select>
+
+</mapper>

@@ -1,0 +1,2 @@
+com.pf.common.log.service.AsyncLogService
+com.pf.common.log.aspect.LogAspect
