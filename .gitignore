@@ -1,0 +1,6 @@
+logs/
+target/
+.gitignore
+.idea
+fly.iml
+*.class
